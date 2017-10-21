@@ -1,0 +1,31 @@
+Opened log file 'C:\temp\cppdebug\3_Crash_AfterApplicationVerifier.log'
+0:000> g
+ModLoad: 76220000 76280000   C:\Windows\SysWOW64\IMM32.DLL
+ModLoad: 76c50000 76d1c000   C:\Windows\syswow64\MSCTF.dll
+ModLoad: 71de0000 71e60000   C:\Windows\SysWOW64\UxTheme.dll
+ModLoad: 71dc0000 71dd3000   C:\Windows\SysWOW64\dwmapi.dll
+ModLoad: 53ec0000 53ecd000   C:\Windows\SysWOW64\MFC100ENU.DLL
+ModLoad: 74f80000 75bc9000   C:\Windows\syswow64\SHELL32.dll
+ModLoad: 76800000 7695c000   C:\Windows\syswow64\ole32.dll
+ModLoad: 07010000 0716c000   C:\Windows\SysWOW64\ole32.dll
+ModLoad: 07370000 074cc000   C:\Windows\SysWOW64\ole32.dll
+ModLoad: 76420000 764a3000   C:\Windows\syswow64\CLBCatQ.DLL
+ModLoad: 75f30000 75fbf000   C:\Windows\syswow64\OLEAUT32.dll
+(1d8.125c): Access violation - code c0000005 (first chance)
+First chance exceptions are reported before any exception handling.
+This exception may be expected and handled.
+eax=01143b04 ebx=744f29c7 ecx=00000043 edx=067a84fc esi=078ec000 edi=00000064
+eip=744f2a03 esp=0736fd54 ebp=0736fd5c iopl=0         nv up ei pl nz ac pe nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00010216
+MSVCR100!wcscpy_s+0x3d:
+744f2a03 66890c02        mov     word ptr [edx+eax],cx    ds:002b:078ec000=????
+0:001> kb
+ChildEBP RetAddr  Args to Child              
+0736fd5c 01141a1e 078ec000 00000064 01143b04 MSVCR100!wcscpy_s+0x3d [f:\dd\vctools\crt_bld\self_x86\crt\src\tcscpy_s.inl @ 23]
+0736fd74 01141730 28bfc65b 00000000 00000000 BatteryMeter!CPUInformation::CPUInformation+0x2e [d:\livemesh\sharingbin\cppdebug\exercises\3_crash\sources\batterymeter\cpuinformation.cpp @ 14]
+0736fda0 76513677 078eae30 0736fdec 77269d42 BatteryMeter!TemperatureAndBatteryUpdaterThread+0x90 [d:\livemesh\sharingbin\cppdebug\exercises\3_crash\sources\batterymeter\batterymeterdlg.cpp @ 55]
+0736fdac 77269d42 0031fbc8 596d7003 00000000 kernel32!BaseThreadInitThunk+0xe
+0736fdec 77269d15 011416a0 0031fbc8 00000000 ntdll!__RtlUserThreadStart+0x70
+0736fe04 00000000 011416a0 0031fbc8 00000000 ntdll!_RtlUserThreadStart+0x1b
+0:001> q
+quit:

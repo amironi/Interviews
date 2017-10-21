@@ -1,0 +1,25 @@
+HKCR
+{
+	ThreadServer.Multi.1 = s 'Multi Class'
+	{
+		CLSID = s '{294FDE0C-606D-493F-AF33-0FA8C7239419}'
+	}
+	ThreadServer.Multi = s 'Multi Class'
+	{
+		CLSID = s '{294FDE0C-606D-493F-AF33-0FA8C7239419}'
+		CurVer = s 'ThreadServer.Multi.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {294FDE0C-606D-493F-AF33-0FA8C7239419} = s 'Multi Class'
+		{
+			ProgID = s 'ThreadServer.Multi.1'
+			VersionIndependentProgID = s 'ThreadServer.Multi'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Free'
+			}
+			'TypeLib' = s '{BFECFA84-19E4-4A09-868F-3221E2F53ED7}'
+		}
+	}
+}

@@ -1,0 +1,281 @@
+Opened log file 'C:\temp\cppdebug\8_ElaborateDeadlock.log'
+0:005> ~* k
+
+   0  Id: 1f3c.1e54 Suspend: 1 Teb: 7efdd000 Unfrozen
+ChildEBP RetAddr  
+0024fb48 764c0962 ntdll!ZwWaitForMultipleObjects+0x15
+0024fbe4 7651162d KERNELBASE!WaitForMultipleObjectsEx+0x100
+0024fc2c 76511921 kernel32!WaitForMultipleObjectsExImplementation+0xe0
+0024fc48 012f11ad kernel32!WaitForMultipleObjects+0x18
+0024fc78 012f1331 ElaborateDeadlock!wmain+0xfd [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 66]
+0024fcbc 76513677 ElaborateDeadlock!__tmainCRTStartup+0x122 [f:\dd\vctools\crt_bld\self_x86\crt\src\crtexe.c @ 552]
+0024fcc8 77269d42 kernel32!BaseThreadInitThunk+0xe
+0024fd08 77269d15 ntdll!__RtlUserThreadStart+0x70
+0024fd20 00000000 ntdll!_RtlUserThreadStart+0x1b
+
+   1  Id: 1f3c.2250 Suspend: 1 Teb: 7efda000 Unfrozen
+ChildEBP RetAddr  
+0073fd10 764c0816 ntdll!ZwWaitForSingleObject+0x15
+0073fd7c 76511184 KERNELBASE!WaitForSingleObjectEx+0x98
+0073fd94 76511138 kernel32!WaitForSingleObjectExImplementation+0x75
+0073fda8 012f101c kernel32!WaitForSingleObject+0x12
+0073fdb8 76513677 ElaborateDeadlock!HelperThread+0x1c [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 16]
+0073fdc4 77269d42 kernel32!BaseThreadInitThunk+0xe
+0073fe04 77269d15 ntdll!__RtlUserThreadStart+0x70
+0073fe1c 00000000 ntdll!_RtlUserThreadStart+0x1b
+
+   2  Id: 1f3c.21ec Suspend: 1 Teb: 7efd7000 Unfrozen
+ChildEBP RetAddr  
+00a2fc24 764c0816 ntdll!ZwWaitForSingleObject+0x15
+00a2fc90 76511184 KERNELBASE!WaitForSingleObjectEx+0x98
+00a2fca8 76511138 kernel32!WaitForSingleObjectExImplementation+0x75
+00a2fcbc 012f104e kernel32!WaitForSingleObject+0x12
+00a2fcc8 76513677 ElaborateDeadlock!WaiterThread+0xe [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 25]
+00a2fcd4 77269d42 kernel32!BaseThreadInitThunk+0xe
+00a2fd14 77269d15 ntdll!__RtlUserThreadStart+0x70
+00a2fd2c 00000000 ntdll!_RtlUserThreadStart+0x1b
+
+   3  Id: 1f3c.18a0 Suspend: 1 Teb: 7efaf000 Unfrozen
+ChildEBP RetAddr  
+00bdfd84 764c0816 ntdll!ZwWaitForSingleObject+0x15
+00bdfdf0 76511184 KERNELBASE!WaitForSingleObjectEx+0x98
+00bdfe08 76511138 kernel32!WaitForSingleObjectExImplementation+0x75
+00bdfe1c 012f106e kernel32!WaitForSingleObject+0x12
+00bdfe28 76513677 ElaborateDeadlock!SomeOtherThread+0xe [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 33]
+00bdfe34 77269d42 kernel32!BaseThreadInitThunk+0xe
+00bdfe74 77269d15 ntdll!__RtlUserThreadStart+0x70
+00bdfe8c 00000000 ntdll!_RtlUserThreadStart+0x1b
+
+   4  Id: 1f3c.20d4 Suspend: 1 Teb: 7efac000 Unfrozen
+ChildEBP RetAddr  
+00cef758 764c0816 ntdll!ZwWaitForSingleObject+0x15
+00cef7c4 76511184 KERNELBASE!WaitForSingleObjectEx+0x98
+00cef7dc 76511138 kernel32!WaitForSingleObjectExImplementation+0x75
+00cef7f0 012f109c kernel32!WaitForSingleObject+0x12
+00cef800 76513677 ElaborateDeadlock!AnnoyingThread+0x1c [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 42]
+00cef80c 77269d42 kernel32!BaseThreadInitThunk+0xe
+00cef84c 77269d15 ntdll!__RtlUserThreadStart+0x70
+00cef864 00000000 ntdll!_RtlUserThreadStart+0x1b
+
+#  5  Id: 1f3c.1568 Suspend: 1 Teb: 7efa9000 Unfrozen
+ChildEBP RetAddr  
+00e2fc00 772cf51e ntdll!DbgBreakPoint
+00e2fc30 76513677 ntdll!DbgUiRemoteBreakin+0x3c
+00e2fc3c 77269d42 kernel32!BaseThreadInitThunk+0xe
+00e2fc7c 77269d15 ntdll!__RtlUserThreadStart+0x70
+00e2fc94 00000000 ntdll!_RtlUserThreadStart+0x1b
+0:005> ~0s
+eax=00000000 ebx=0024fb98 ecx=00000000 edx=00000000 esi=00000004 edi=00000000
+eip=772500ed esp=0024fb48 ebp=0024fbe4 iopl=0         nv up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!ZwWaitForMultipleObjects+0x15:
+772500ed 83c404          add     esp,4
+0:000> kb
+ChildEBP RetAddr  Args to Child              
+0024fb48 764c0962 00000004 0024fb98 00000000 ntdll!ZwWaitForMultipleObjects+0x15
+0024fbe4 7651162d 0024fb98 0024fc0c 00000001 KERNELBASE!WaitForMultipleObjectsEx+0x100
+0024fc2c 76511921 00000004 7efde000 00000001 kernel32!WaitForMultipleObjectsExImplementation+0xe0
+0024fc48 012f11ad 00000004 0024fc68 00000001 kernel32!WaitForMultipleObjects+0x18
+0024fc78 012f1331 00000001 007d1300 007d1398 ElaborateDeadlock!wmain+0xfd [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 66]
+0024fcbc 76513677 7efde000 0024fd08 77269d42 ElaborateDeadlock!__tmainCRTStartup+0x122 [f:\dd\vctools\crt_bld\self_x86\crt\src\crtexe.c @ 552]
+0024fcc8 77269d42 7efde000 5e6ac82b 00000000 kernel32!BaseThreadInitThunk+0xe
+0024fd08 77269d15 012f1452 7efde000 00000000 ntdll!__RtlUserThreadStart+0x70
+0024fd20 00000000 012f1452 7efde000 00000000 ntdll!_RtlUserThreadStart+0x1b
+0:000> dd 0024fc68 L4
+0024fc68  00000028 0000002c 00000030 00000034
+0:000> !handle 28 f
+Handle 28
+  Type         	Thread
+  Attributes   	0
+  GrantedAccess	0x1fffff:
+         Delete,ReadControl,WriteDac,WriteOwner,Synch
+         Terminate,Suspend,Alert,GetContext,SetContext,SetInfo,QueryInfo,SetToken,Impersonate,DirectImpersonate
+  HandleCount  	4
+  PointerCount 	7
+  Name         	<none>
+  Object Specific Information
+    Thread Id   1f3c.2250
+    Priority    10
+    Base Priority 0
+    Start Address 12f1000 ElaborateDeadlock!HelperThread
+0:000> !handle 2c f
+Handle 2c
+  Type         	Thread
+  Attributes   	0
+  GrantedAccess	0x1fffff:
+         Delete,ReadControl,WriteDac,WriteOwner,Synch
+         Terminate,Suspend,Alert,GetContext,SetContext,SetInfo,QueryInfo,SetToken,Impersonate,DirectImpersonate
+  HandleCount  	4
+  PointerCount 	8
+  Name         	<none>
+  Object Specific Information
+    Thread Id   1f3c.21ec
+    Priority    10
+    Base Priority 0
+    Start Address 12f1040 ElaborateDeadlock!WaiterThread
+0:000> !handle 30 f
+Handle 30
+  Type         	Thread
+  Attributes   	0
+  GrantedAccess	0x1fffff:
+         Delete,ReadControl,WriteDac,WriteOwner,Synch
+         Terminate,Suspend,Alert,GetContext,SetContext,SetInfo,QueryInfo,SetToken,Impersonate,DirectImpersonate
+  HandleCount  	4
+  PointerCount 	8
+  Name         	<none>
+  Object Specific Information
+    Thread Id   1f3c.18a0
+    Priority    10
+    Base Priority 0
+    Start Address 12f1060 ElaborateDeadlock!SomeOtherThread
+0:000> !handle 34 f
+Handle 34
+  Type         	Thread
+  Attributes   	0
+  GrantedAccess	0x1fffff:
+         Delete,ReadControl,WriteDac,WriteOwner,Synch
+         Terminate,Suspend,Alert,GetContext,SetContext,SetInfo,QueryInfo,SetToken,Impersonate,DirectImpersonate
+  HandleCount  	4
+  PointerCount 	7
+  Name         	<none>
+  Object Specific Information
+    Thread Id   1f3c.20d4
+    Priority    10
+    Base Priority 0
+    Start Address 12f1080 ElaborateDeadlock!AnnoyingThread
+0:000> ~1s
+eax=012f1000 ebx=00000000 ecx=00000000 edx=00000000 esi=00000040 edi=00000000
+eip=7724f861 esp=0073fd10 ebp=0073fd7c iopl=0         nv up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!ZwWaitForSingleObject+0x15:
+7724f861 83c404          add     esp,4
+0:001> kb
+ChildEBP RetAddr  Args to Child              
+0073fd10 764c0816 00000040 00000000 00000000 ntdll!ZwWaitForSingleObject+0x15
+0073fd7c 76511184 00000040 ffffffff 00000000 KERNELBASE!WaitForSingleObjectEx+0x98
+0073fd94 76511138 00000040 ffffffff 00000000 kernel32!WaitForSingleObjectExImplementation+0x75
+0073fda8 012f101c 00000040 ffffffff 00000000 kernel32!WaitForSingleObject+0x12
+0073fdb8 76513677 00000000 0073fe04 77269d42 ElaborateDeadlock!HelperThread+0x1c [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 16]
+0073fdc4 77269d42 00000000 5e3dcb27 00000000 kernel32!BaseThreadInitThunk+0xe
+0073fe04 77269d15 012f1000 00000000 00000000 ntdll!__RtlUserThreadStart+0x70
+0073fe1c 00000000 012f1000 00000000 00000000 ntdll!_RtlUserThreadStart+0x1b
+0:001> !handle 40 f
+Handle 40
+  Type         	Mutant
+  Attributes   	0
+  GrantedAccess	0x1f0001:
+         Delete,ReadControl,WriteDac,WriteOwner,Synch
+         QueryState
+  HandleCount  	2
+  PointerCount 	5
+  Name         	\Sessions\1\BaseNamedObjects\AnnoyingMutex
+  Object Specific Information
+    Mutex is Owned
+0:001> ~2s
+eax=012f1040 ebx=00000000 ecx=00000000 edx=00000000 esi=0000003c edi=00000000
+eip=7724f861 esp=00a2fc24 ebp=00a2fc90 iopl=0         nv up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!ZwWaitForSingleObject+0x15:
+7724f861 83c404          add     esp,4
+0:002> kb
+ChildEBP RetAddr  Args to Child              
+00a2fc24 764c0816 0000003c 00000000 00000000 ntdll!ZwWaitForSingleObject+0x15
+00a2fc90 76511184 0000003c ffffffff 00000000 KERNELBASE!WaitForSingleObjectEx+0x98
+00a2fca8 76511138 0000003c ffffffff 00000000 kernel32!WaitForSingleObjectExImplementation+0x75
+00a2fcbc 012f104e 0000003c ffffffff 76513677 kernel32!WaitForSingleObject+0x12
+00a2fcc8 76513677 00000000 00a2fd14 77269d42 ElaborateDeadlock!WaiterThread+0xe [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 25]
+00a2fcd4 77269d42 00000000 5eecc837 00000000 kernel32!BaseThreadInitThunk+0xe
+00a2fd14 77269d15 012f1040 00000000 00000000 ntdll!__RtlUserThreadStart+0x70
+00a2fd2c 00000000 012f1040 00000000 00000000 ntdll!_RtlUserThreadStart+0x1b
+0:002> !handle 3c f
+Handle 3c
+  Type         	Mutant
+  Attributes   	0
+  GrantedAccess	0x1f0001:
+         Delete,ReadControl,WriteDac,WriteOwner,Synch
+         QueryState
+  HandleCount  	2
+  PointerCount 	5
+  Name         	\Sessions\1\BaseNamedObjects\HelperMutex
+  Object Specific Information
+    Mutex is Owned
+0:002> ~3s
+eax=012f1060 ebx=00000000 ecx=00000000 edx=00000000 esi=0000002c edi=00000000
+eip=7724f861 esp=00bdfd84 ebp=00bdfdf0 iopl=0         nv up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!ZwWaitForSingleObject+0x15:
+7724f861 83c404          add     esp,4
+0:003> kb
+ChildEBP RetAddr  Args to Child              
+00bdfd84 764c0816 0000002c 00000000 00000000 ntdll!ZwWaitForSingleObject+0x15
+00bdfdf0 76511184 0000002c ffffffff 00000000 KERNELBASE!WaitForSingleObjectEx+0x98
+00bdfe08 76511138 0000002c ffffffff 00000000 kernel32!WaitForSingleObjectExImplementation+0x75
+00bdfe1c 012f106e 0000002c ffffffff 76513677 kernel32!WaitForSingleObject+0x12
+00bdfe28 76513677 00000000 00bdfe74 77269d42 ElaborateDeadlock!SomeOtherThread+0xe [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 33]
+00bdfe34 77269d42 00000000 5ef3cb57 00000000 kernel32!BaseThreadInitThunk+0xe
+00bdfe74 77269d15 012f1060 00000000 00000000 ntdll!__RtlUserThreadStart+0x70
+00bdfe8c 00000000 012f1060 00000000 00000000 ntdll!_RtlUserThreadStart+0x1b
+0:003> !handle 2c f
+Handle 2c
+  Type         	Thread
+  Attributes   	0
+  GrantedAccess	0x1fffff:
+         Delete,ReadControl,WriteDac,WriteOwner,Synch
+         Terminate,Suspend,Alert,GetContext,SetContext,SetInfo,QueryInfo,SetToken,Impersonate,DirectImpersonate
+  HandleCount  	4
+  PointerCount 	8
+  Name         	<none>
+  Object Specific Information
+    Thread Id   1f3c.21ec
+    Priority    10
+    Base Priority 0
+    Start Address 12f1040 ElaborateDeadlock!WaiterThread
+0:003> ~4s
+eax=012f1080 ebx=00000000 ecx=00000000 edx=00000000 esi=00000030 edi=00000000
+eip=7724f861 esp=00cef758 ebp=00cef7c4 iopl=0         nv up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!ZwWaitForSingleObject+0x15:
+7724f861 83c404          add     esp,4
+0:004> kb
+ChildEBP RetAddr  Args to Child              
+00cef758 764c0816 00000030 00000000 00000000 ntdll!ZwWaitForSingleObject+0x15
+00cef7c4 76511184 00000030 ffffffff 00000000 KERNELBASE!WaitForSingleObjectEx+0x98
+00cef7dc 76511138 00000030 ffffffff 00000000 kernel32!WaitForSingleObjectExImplementation+0x75
+00cef7f0 012f109c 00000030 ffffffff 00000000 kernel32!WaitForSingleObject+0x12
+00cef800 76513677 00000000 00cef84c 77269d42 ElaborateDeadlock!AnnoyingThread+0x1c [d:\livemesh\sharingbin\cppdebug\exercises\elaboratedeadlock\elaboratedeadlock.cpp @ 42]
+00cef80c 77269d42 00000000 5e80cd6f 00000000 kernel32!BaseThreadInitThunk+0xe
+00cef84c 77269d15 012f1080 00000000 00000000 ntdll!__RtlUserThreadStart+0x70
+00cef864 00000000 012f1080 00000000 00000000 ntdll!_RtlUserThreadStart+0x1b
+0:004> !handle 30 f
+Handle 30
+  Type         	Thread
+  Attributes   	0
+  GrantedAccess	0x1fffff:
+         Delete,ReadControl,WriteDac,WriteOwner,Synch
+         Terminate,Suspend,Alert,GetContext,SetContext,SetInfo,QueryInfo,SetToken,Impersonate,DirectImpersonate
+  HandleCount  	4
+  PointerCount 	8
+  Name         	<none>
+  Object Specific Information
+    Thread Id   1f3c.18a0
+    Priority    10
+    Base Priority 0
+    Start Address 12f1060 ElaborateDeadlock!SomeOtherThread
+0:004> .load C:\temp\wct_vs2008
+0:004> ? 2250
+Evaluate expression: 8784 = 00002250
+0:004> !wct_thread 8784
+>>> Begin wait chain for thread 7996:8784 with 9 nodes
+    Thread [7996:8784:blocked WT=44622389] ==>
+    Mutex [\Sessions\1\BaseNamedObjects\AnnoyingMutex] ==>
+    Thread [7996:8404:blocked WT=44623991] ==>
+    ThreadWait [-] ==>
+    Thread [7996:6304:blocked WT=44623712] ==>
+    ThreadWait [-] ==>
+    Thread [7996:8684:blocked WT=44623312] ==>
+    Mutex [\Sessions\1\BaseNamedObjects\HelperMutex] ==>
+    Thread [7996:8784:blocked WT=44622389] ==>
+DEADLOCK FOUND
+>>> End wait chain for thread 7996:8784
+0:004> q
+quit:

@@ -1,0 +1,19 @@
+0. Run the BatteryMeter.exe application.
+
+1. Click the spin control on the bottom right of the screen. The application stops responding.
+
+2. Attach WinDbg or capture a hang dump.
+
+3. Use the ~*, kb, and any other commands to understand what the application's threads are doing. To inspect handle arrays, use dd and !handle.
+
+4. Use the !cs -l -o command to inspect locked critical sections and their owning stack traces; or use !cs -o <address> to view a single critical section and information about its owning thread.
+
+5. Draw a wait chain of the application's threads and describe the deadlock that occurred.
+
+NOTE: If you encounter a thread that is waiting in a SendMessage call, don't give up. Follow these steps:
+
+6. Check (on MSDN or a search engine) which parameter of SendMessage is the window handle (HWND). The answer: the first parameter.
+
+7. Use Spy++ from the Visual Studio tools to search for a window with that HWND. In the Processes tab in Spy++ you can find the owner thread for that window and proceed with the wait chain.
+
+8. (ALTERNATIVE) Use the SDbgExt extension's !hwnd command to find the owner thread for the window handle.

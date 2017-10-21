@@ -1,0 +1,140 @@
+Opened log file 'C:\temp\cppdebug\5_FileLeak.log'
+0:002> !htrace -enable
+Handle tracing enabled.
+Handle tracing information snapshot successfully taken.
+0:002> g
+(2318.1eac): Break instruction exception - code 80000003 (first chance)
+eax=7efd7000 ebx=00000000 ecx=00000000 edx=772cf4e2 esi=00000000 edi=00000000
+eip=7724000c esp=028dfe14 ebp=028dfe40 iopl=0         nv up ei pl zr na pe nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000246
+ntdll!DbgBreakPoint:
+7724000c cc              int     3
+0:002> !htrace -diff
+Handle tracing information snapshot successfully taken.
+0x12 new stack traces since the previous snapshot.
+Ignoring handles that were already closed...
+Outstanding handles opened since the previous snapshot:
+--------------------------------------
+Handle = 0x0000013c - OPEN
+Thread ID = 0x00000ae0, Process ID = 0x00002318
+
+0x02d87887: +0x02d87887
+0x02d91498: +0x02d91498
+0x02a80853: +0x02a80853
+0x770a02aa: +0x770a02aa
+0x7433bfe3: +0x7433bfe3
+0x7432cf87: +0x7432cf87
+0x7440276d: +0x7440276d
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770cc367: +0x770cc367
+0x77082e2e: +0x77082e2e
+0x77250056: ntdll!ZwCreateFile+0x00000012
+0x764cb616: KERNELBASE!CreateFileW+0x0000035e
+0x76512345: kernel32!CreateFileWImplementation+0x00000069
+0x01381a5e: BatteryMeter!CPUInformation::CPUInformation+0x0000005e
+0x01381725: BatteryMeter!TemperatureAndBatteryUpdaterThread+0x00000095
+--------------------------------------
+Handle = 0x00000134 - OPEN
+Thread ID = 0x00000ae0, Process ID = 0x00002318
+
+0x02d87887: +0x02d87887
+0x02d91498: +0x02d91498
+0x02a80853: +0x02a80853
+0x770a02aa: +0x770a02aa
+0x7433bfe3: +0x7433bfe3
+0x7432cf87: +0x7432cf87
+0x7440276d: +0x7440276d
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770cc367: +0x770cc367
+0x77082e2e: +0x77082e2e
+0x77250056: ntdll!ZwCreateFile+0x00000012
+0x764cb616: KERNELBASE!CreateFileW+0x0000035e
+0x76512345: kernel32!CreateFileWImplementation+0x00000069
+0x01381a5e: BatteryMeter!CPUInformation::CPUInformation+0x0000005e
+0x01381725: BatteryMeter!TemperatureAndBatteryUpdaterThread+0x00000095
+--------------------------------------
+Handle = 0x0000012c - OPEN
+Thread ID = 0x00000ae0, Process ID = 0x00002318
+
+0x02d87887: +0x02d87887
+0x02d91498: +0x02d91498
+0x02a80853: +0x02a80853
+0x770a02aa: +0x770a02aa
+0x7433bfe3: +0x7433bfe3
+0x7432cf87: +0x7432cf87
+0x7440276d: +0x7440276d
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770cc367: +0x770cc367
+0x77082e2e: +0x77082e2e
+0x77250056: ntdll!ZwCreateFile+0x00000012
+0x764cb616: KERNELBASE!CreateFileW+0x0000035e
+0x76512345: kernel32!CreateFileWImplementation+0x00000069
+0x01381a5e: BatteryMeter!CPUInformation::CPUInformation+0x0000005e
+0x01381725: BatteryMeter!TemperatureAndBatteryUpdaterThread+0x00000095
+--------------------------------------
+Handle = 0x00000124 - OPEN
+Thread ID = 0x00000ae0, Process ID = 0x00002318
+
+0x02d87887: +0x02d87887
+0x02d91498: +0x02d91498
+0x02a80853: +0x02a80853
+0x770a02aa: +0x770a02aa
+0x7433bfe3: +0x7433bfe3
+0x7432cf87: +0x7432cf87
+0x7440276d: +0x7440276d
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770cc367: +0x770cc367
+0x77082e2e: +0x77082e2e
+0x77250056: ntdll!ZwCreateFile+0x00000012
+0x764cb616: KERNELBASE!CreateFileW+0x0000035e
+0x76512345: kernel32!CreateFileWImplementation+0x00000069
+0x01381a5e: BatteryMeter!CPUInformation::CPUInformation+0x0000005e
+0x01381725: BatteryMeter!TemperatureAndBatteryUpdaterThread+0x00000095
+--------------------------------------
+Handle = 0x0000011c - OPEN
+Thread ID = 0x00000ae0, Process ID = 0x00002318
+
+0x02d87887: +0x02d87887
+0x02d91498: +0x02d91498
+0x02a80853: +0x02a80853
+0x770a02aa: +0x770a02aa
+0x7433bfe3: +0x7433bfe3
+0x7432cf87: +0x7432cf87
+0x7440276d: +0x7440276d
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770cc367: +0x770cc367
+0x77082e2e: +0x77082e2e
+0x77250056: ntdll!ZwCreateFile+0x00000012
+0x764cb616: KERNELBASE!CreateFileW+0x0000035e
+0x76512345: kernel32!CreateFileWImplementation+0x00000069
+0x01381a5e: BatteryMeter!CPUInformation::CPUInformation+0x0000005e
+0x01381725: BatteryMeter!TemperatureAndBatteryUpdaterThread+0x00000095
+--------------------------------------
+Handle = 0x00000114 - OPEN
+Thread ID = 0x00000ae0, Process ID = 0x00002318
+
+0x02d87887: +0x02d87887
+0x02d91498: +0x02d91498
+0x02a80853: +0x02a80853
+0x770a02aa: +0x770a02aa
+0x7433bfe3: +0x7433bfe3
+0x7432cf87: +0x7432cf87
+0x7440276d: +0x7440276d
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770cc367: +0x770cc367
+0x77082e2e: +0x77082e2e
+0x77250056: ntdll!ZwCreateFile+0x00000012
+0x764cb616: KERNELBASE!CreateFileW+0x0000035e
+0x76512345: kernel32!CreateFileWImplementation+0x00000069
+0x01381a5e: BatteryMeter!CPUInformation::CPUInformation+0x0000005e
+0x01381725: BatteryMeter!TemperatureAndBatteryUpdaterThread+0x00000095
+--------------------------------------
+Displayed 0x6 stack traces for outstanding handles opened since the previous snapshot.
+0:002> q
+quit:

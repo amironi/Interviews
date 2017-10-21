@@ -1,0 +1,52 @@
+Opened log file 'C:\temp\cppdebug\9_CppException.log'
+0:000> g
+(1fbc.23f0): C++ EH exception - code e06d7363 (first chance)
+(1fbc.23f0): C++ EH exception - code e06d7363 (!!! second chance !!!)
+eax=003bf840 ebx=00000000 ecx=00000003 edx=00000000 esi=00000001 edi=010b33dc
+eip=764bb727 esp=003bf840 ebp=003bf890 iopl=0         nv up ei pl nz ac po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000212
+KERNELBASE!RaiseException+0x58:
+764bb727 c9              leave
+0:000> kb
+ChildEBP RetAddr  Args to Child              
+003bf890 74507819 e06d7363 00000001 00000003 KERNELBASE!RaiseException+0x58
+003bf8c8 010b10ac 003bf8d8 010b2398 010b2120 MSVCR100!_CxxThrowException+0x48 [f:\dd\vctools\crt_bld\self_x86\crt\prebuild\eh\throw.cpp @ 157]
+003bf924 010b12fd 00000001 006a2c60 006a3f20 ILikeToThrow!baz+0x5c [d:\livemesh\sharingbin\cppdebug\exercises\iliketothrow\iliketothrow.cpp @ 33]
+003bf968 76513677 7efde000 003bf9b4 77269d42 ILikeToThrow!__tmainCRTStartup+0x122 [f:\dd\vctools\crt_bld\self_x86\crt\src\crtexe.c @ 552]
+003bf974 77269d42 7efde000 5e778605 00000000 kernel32!BaseThreadInitThunk+0xe
+003bf9b4 77269d15 010b141e 7efde000 00000000 ntdll!__RtlUserThreadStart+0x70
+003bf9cc 00000000 010b141e 7efde000 00000000 ntdll!_RtlUserThreadStart+0x1b
+0:000> .exr -1
+ExceptionAddress: 764bb727 (KERNELBASE!RaiseException+0x00000058)
+   ExceptionCode: e06d7363 (C++ EH exception)
+  ExceptionFlags: 00000001
+NumberParameters: 3
+   Parameter[0]: 19930520
+   Parameter[1]: 003bf8d8
+   Parameter[2]: 010b2398
+!cppexr ffffffffffffffff
+0:000> db 003bf8d8
+003bf8d8  20 21 0b 01 00 00 00 00-00 2c 6a 00 80 56 6a 00   !.......,j..Vj.
+003bf8e8  dc 04 00 00 65 72 72 6f-72 3a 20 31 32 34 34 20  ....error: 1244 
+003bf8f8  34 64 63 00 e9 11 50 74-c8 20 0b 01 28 f9 3b 00  4dc...Pt. ..(.;.
+003bf908  c6 11 0b 01 80 30 0b 01-88 30 0b 01 84 30 0b 01  .....0...0...0..
+003bf918  00 00 00 00 94 30 0b 01-96 c1 02 6e 68 f9 3b 00  .....0.....nh.;.
+003bf928  fd 12 0b 01 01 00 00 00-60 2c 6a 00 20 3f 6a 00  ........`,j. ?j.
+003bf938  da c1 02 6e 00 00 00 00-00 00 00 00 00 e0 fd 7e  ...n...........~
+003bf948  63 73 6d e0 00 00 00 00-38 f9 3b 00 e4 f3 3b 00  csm.....8.;...;.
+0:000> dd 010b2398 L4
+010b2398  00000000 010b1040 00000000 010b238c
+0:000> dd 010b238c L2
+010b238c  00000002 010b2354
+0:000> dd 010b2354 L2
+010b2354  00000000 010b3038
+0:000> da 010b3038+8
+010b3040  ".?AVmy_elaborate_exception@@"
+0:000> dt ILikeToThrow!my_elaborate_exception 003bf8d8
+   +0x000 __VFN_table : 0x010b2120 
+   +0x004 _Mywhat          : (null) 
+   +0x008 _Mydofree        : 0
+   +0x00c _error_message   : 0x006a5680  "error: 1244 4dc"
+   +0x010 _error_code      : 1244
+0:000> q
+quit:

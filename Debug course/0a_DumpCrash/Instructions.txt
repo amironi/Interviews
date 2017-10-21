@@ -1,0 +1,41 @@
+
+1. Run the FileExplorer.exe application from the Binaries folder.
+
+2. Use the directory browser control to choose any directory you like.
+
+3. Click the "Populate" button. The application crashes.
+
+4. Capture a crash dump of the application using the tools shown in class. You may use whatever tool you like, provided that at the end you have a dump file that you can open in Visual Studio 2010.
+
+One way to do this: use a command shell to navigate to
+
+	C:\Program Files\Debugging Tools for Windows (x86)
+
+and then use ADPlus as follows:
+
+	adplus -o C:\dumps -crash -sc "<full path to FileExplorer.exe>"
+
+after the application launches, repeat steps 1-3 and then look for the dump file in the C:\dumps directory.
+
+5. Open the dump file in Visual Studio 2010 using File-->Open File. Configure symbols if necessary using the "Set Symbols Path" link. Click the "Debug with Native" green "play" button. If asked for source file locations, point the debugger to the Sources\FileExplorer folder.
+
+6. Inspect the current line, the call stack, the locals window and try to diagnose the root cause of the crash.
+
+7. Open the dump file in WinDbg using File-->Open Crash Dump. (Make sure you have configured symbols using File-->Symbol File Path and sources using File-->Source File Path.)
+
+8. Issue the k command to view the call stack of the offending thread. You can also use the View-->Call Stack window and click the frames to switch between them and view the source code.
+
+9. If the k command displays a trimmed call stack with only one frame, you have to perform a manual stack walk:
+
+Recall that the EBP register (usually) points to the saved value of EBP from the previous frame, and that the memory location immediately following the saved EBP value is the return address. Locate the value of the EBP register using the r ebp command. Pass this value to the dd command to view the memory contents to which EBP is pointing. The following value is (supposedly) the return address, which you can verify by viewing disassembly or using the ln command to lookup the symbol. This process can be repeated to reconstruct the entire stack trace. For example:
+
+0:000> r ebp
+ebp=00413008
+0:000> dd 00413008 L2
+00413008 00413044 003007f4
+0:000> dd 00413044 L2
+00413044 00413080 003007f4
+0:000> dd 00413080 L2
+00413080 004130bc 003007f4
+
+Finally, it might be the case that the EBP register itself is corrupted. In this case, you will have to look at the stack manually (e.g. in the WinDbg View | Memory window, formatted as "Pointer and Symbol") starting from the ESP register and try to find something that looks like a return address (that !u would recognize). When you find such a value, the preceding memory location is typically the saved EBP value -- you can use this value to perform the above reconstruction procedure. This process is rather hairy, so if you get stuck consult the instructor or wait for the exercise review.

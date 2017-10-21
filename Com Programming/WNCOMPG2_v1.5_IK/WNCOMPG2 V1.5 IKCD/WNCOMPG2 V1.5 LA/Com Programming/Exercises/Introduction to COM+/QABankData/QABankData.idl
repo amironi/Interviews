@@ -1,0 +1,39 @@
+// QABankData.idl : IDL source for QABankData.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (QABankData.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(9D544FDD-86EA-4CFC-AA21-C44C1181AD4B),
+		dual,
+		helpstring("IQABankAccount Interface"),
+		pointer_default(unique)
+	]
+	interface IQABankAccount : IDispatch
+	{
+		[id(1), helpstring("method UpdateAccount")] HRESULT UpdateAccount([in] BSTR accountName, [in] double amount, [out,retval] short *rowsAffected);
+	};
+
+[
+	uuid(DCC7E77D-CE0B-47C9-9B6A-D9889A0EE83C),
+	version(1.0),
+	helpstring("QABankData 1.0 Type Library")
+]
+library QABANKDATALib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(5DBDB96C-9089-459F-91D4-296EC12976FD),
+		helpstring("QABankAccount Class")
+	]
+	coclass QABankAccount
+	{
+		[default] interface IQABankAccount;
+	};
+};

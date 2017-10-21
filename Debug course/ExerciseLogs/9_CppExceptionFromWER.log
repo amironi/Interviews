@@ -1,0 +1,48 @@
+Opened log file 'C:\temp\cppdebug\9_CppExceptionFromWER.log'
+0:000> .ecxr
+Unable to get exception context, HRESULT 0x8000FFFF
+0:000> kb
+ChildEBP RetAddr  Args to Child              
+0045f264 764c0962 00000002 0045f2b4 00000001 ntdll!ZwWaitForMultipleObjects+0x15
+0045f300 7651162d 0045f2b4 0045f328 00000000 KERNELBASE!WaitForMultipleObjectsEx+0x100
+0045f348 76511921 00000002 7efde000 00000000 kernel32!WaitForMultipleObjectsExImplementation+0xe0
+0045f364 76539b0d 00000002 0045f398 00000000 kernel32!WaitForMultipleObjects+0x18
+0045f3d0 76539baa 0045f494 00000001 00000001 kernel32!WerpReportFaultInternal+0x186
+0045f3e4 765398d8 0045f494 00000001 0045f480 kernel32!WerpReportFault+0x70
+0045f3f4 76539855 0045f494 00000001 166445f8 kernel32!BasepReportFault+0x20
+0045f480 7456ae2d 00000000 00b715ef 0045f8bc kernel32!UnhandledExceptionFilter+0x1af
+0045f7bc 7456d635 00000003 40000015 00000001 MSVCR100!_call_reportfault+0x107 [f:\dd\vctools\crt_bld\self_x86\crt\src\invarg.c @ 254]
+0045f7cc 74563745 159eb446 00b715ef 765d030c MSVCR100!abort+0x28 [f:\dd\vctools\crt_bld\self_x86\crt\src\abort.c @ 83]
+0045f7fc 00b7162b 0045f88c 76539d57 0045f8bc MSVCR100!terminate+0x33 [f:\dd\vctools\crt_bld\self_x86\crt\prebuild\eh\hooks.cpp @ 115]
+0045f804 76539d57 0045f8bc 166449f4 00000000 ILikeToThrow!__CxxUnhandledExceptionFilter+0x3c [f:\dd\vctools\crt_bld\self_x86\crt\prebuild\eh\unhandld.cpp @ 72]
+0045f88c 772a06e7 0045f8bc 772a05c4 00000000 kernel32!UnhandledExceptionFilter+0x127
+0045f894 772a05c4 00000000 0045fe68 7725c390 ntdll!__RtlUserThreadStart+0x62
+0045f8a8 772a0469 00000000 00000000 00000000 ntdll!_EH4_CallFilterFunc+0x12
+0045f8d0 77288799 fffffffe 0045fe58 0045fa0c ntdll!_except_handler4+0x8e
+0045f8f4 7728876b 0045f9bc 0045fe58 0045fa0c ntdll!ExecuteHandler2+0x26
+0045f9a4 7724010f 0045f9bc 0045fa0c 0045f9bc ntdll!ExecuteHandler+0x24
+0045f9a4 764bb727 0045f9bc 0045fa0c 0045f9bc ntdll!KiUserExceptionDispatcher+0xf
+0045fd44 74507819 e06d7363 00000001 00000003 KERNELBASE!RaiseException+0x58
+0:000> dd 0045f8bc L2
+0045f8bc  0045f9bc 0045fa0c
+0:000> .exr 0045f9bc 
+ExceptionAddress: 764bb727 (KERNELBASE!RaiseException+0x00000058)
+   ExceptionCode: e06d7363 (C++ EH exception)
+  ExceptionFlags: 00000001
+NumberParameters: 3
+   Parameter[0]: 19930520
+   Parameter[1]: 0045fd8c
+   Parameter[2]: 00b72398
+!cppexr 45f9bc
+  pExceptionObject: 0045fd8c
+  _s_ThrowInfo    : 00b72398
+  Type            : class my_elaborate_exception
+  Type            : class std::exception
+0:000> dt ILikeToThrow!my_elaborate_exception 0045fd8c
+   +0x000 __VFN_table : 0x00b72120 
+   +0x004 _Mywhat          : (null) 
+   +0x008 _Mydofree        : 0
+   +0x00c _error_message   : 0x004c1a60  "error: 1244 4dc"
+   +0x010 _error_code      : 1244
+0:000> q
+quit:

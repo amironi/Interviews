@@ -1,0 +1,38 @@
+HKCR
+{
+	Fire.FireCtrl.1 = s 'Fire Control'
+	{
+		CLSID = s '{23D68044-96C9-11D0-A5E4-00609740F258}'
+	}
+	Fire.FireCtrl = s 'Fire Control'
+	{
+		CurVer = s 'FireCtrl.FireCtrl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {23D68044-96C9-11D0-A5E4-00609740F258} = s 'Fire Control'
+		{
+			ProgID = s 'Fire.FireCtrl.1'
+			VersionIndependentProgID = s 'Fire.FireCtrl'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Programmable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 1'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{23D68035-96C9-11D0-A5E4-00609740F258}'
+			'Version' = s '1.0'
+			ForceRemove 'Implemented Categories'
+			{
+				ForceRemove {7DD95801-9882-11CF-9FA9-00AA006C42C4}
+				ForceRemove {7DD95802-9882-11CF-9FA9-00AA006C42C4}
+			}
+		}
+	}
+}

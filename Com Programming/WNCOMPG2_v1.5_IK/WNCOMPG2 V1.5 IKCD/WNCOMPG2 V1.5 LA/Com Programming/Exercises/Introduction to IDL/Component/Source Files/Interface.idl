@@ -1,0 +1,87 @@
+////////////////////////////////////////////////////////////
+//
+//	    Interface.idl
+//
+////////////////////////////////////////////////////////////
+
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+struct date
+{
+	long day;
+	long month;
+	long year;
+};
+	
+////////////////////////////////////////////////////////////
+// IAAA
+[
+	object,
+	uuid(306BFB71-ACA3-11d3-9E71-006097FAD0B8),
+	dual,
+	helpstring("IAAA Interface"),
+	pointer_default(unique)
+]
+interface IAAA : IUnknown
+{
+	// TODO Test1
+	// TODO Test2
+};
+
+////////////////////////////////////////////////////////////
+// IBBB
+[
+	object,
+	uuid(306BFB72-ACA3-11d3-9E71-006097FAD0B8),
+	dual,
+	helpstring("IBBB Interface"),
+	pointer_default(unique)
+]
+interface IBBB : IUnknown
+{
+	// TODO Test3 [propget]
+	// TODO Test3 [propput]
+	// TODO Test4
+};
+
+////////////////////////////////////////////////////////////
+// ICCC
+[
+	object,
+	uuid(306BFB73-ACA3-11d3-9E71-006097FAD0B8),
+	dual,
+	helpstring("ICCC Interface"),
+	pointer_default(unique)
+]
+interface ICCC : IUnknown
+{
+	// TODO Test5
+	// TODO Test6
+};
+
+
+////////////////////////////////////////////////////////////
+// Type Library
+[
+	uuid(306BFB74-ACA3-11d3-9E71-006097FAD0B8),
+	version(1.0),
+	helpstring("A Component Type Library")
+]
+library CustomInterfacesLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	
+	[
+		uuid(306BFB75-ACA3-11d3-9E71-006097FAD0B8),
+		helpstring("Component Class")
+	]
+	coclass Component
+	{
+		[default] interface IAAA;
+		interface IBBB;
+		interface ICCC;
+	};
+};

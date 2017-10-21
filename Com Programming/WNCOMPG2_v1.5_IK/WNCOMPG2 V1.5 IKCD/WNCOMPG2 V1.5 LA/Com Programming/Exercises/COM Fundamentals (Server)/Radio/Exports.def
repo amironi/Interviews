@@ -1,0 +1,16 @@
+;////////////////////////////////////////////////////////////
+;//
+;//	    Exports.def
+;//
+;////////////////////////////////////////////////////////////
+
+; Microsoft declare the prototypes of DllGetClassObject and 
+; DllCanUnloadNow in <objbase.h> without using the declspec
+; attribute.  Hence you can only export these functions
+; by defining them in a .DEF file.
+
+LIBRARY			  Radio
+DESCRIPTION		'Radio Object'
+EXPORTS
+				DllGetClassObject   PRIVATE
+				DllCanUnloadNow     PRIVATE

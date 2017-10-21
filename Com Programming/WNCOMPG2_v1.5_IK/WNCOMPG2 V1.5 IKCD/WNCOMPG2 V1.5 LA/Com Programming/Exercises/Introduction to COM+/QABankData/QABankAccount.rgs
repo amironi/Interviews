@@ -1,0 +1,25 @@
+HKCR
+{
+	QABankData.QABankAccount.1 = s 'QABankAccount Class'
+	{
+		CLSID = s '{5DBDB96C-9089-459F-91D4-296EC12976FD}'
+	}
+	QABankData.QABankAccount = s 'QABankAccount Class'
+	{
+		CLSID = s '{5DBDB96C-9089-459F-91D4-296EC12976FD}'
+		CurVer = s 'QABankData.QABankAccount.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5DBDB96C-9089-459F-91D4-296EC12976FD} = s 'QABankAccount Class'
+		{
+			ProgID = s 'QABankData.QABankAccount.1'
+			VersionIndependentProgID = s 'QABankData.QABankAccount'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{DCC7E77D-CE0B-47C9-9B6A-D9889A0EE83C}'
+		}
+	}
+}

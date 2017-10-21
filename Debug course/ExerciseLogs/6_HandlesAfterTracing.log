@@ -1,0 +1,163 @@
+Opened log file 'C:\temp\cppdebug\6_Handles.log'
+
+Microsoft (R) Windows Debugger Version 6.11.0001.404 X86
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+CommandLine: C:\Temp\cppdebug\6_Handles\Binaries\BatteryMeter.exe
+Symbol search path is: srv*C:\Symbols*http://msdl.microsoft.com/download/symbols
+Executable search path is: 
+ModLoad: 01300000 01319000   BatteryMeter.exe
+ModLoad: 77230000 773b0000   ntdll.dll
+ModLoad: 76500000 76600000   C:\Windows\syswow64\kernel32.dll
+ModLoad: 764b0000 764f6000   C:\Windows\syswow64\KERNELBASE.dll
+ModLoad: 53470000 538a2000   C:\Windows\SysWOW64\mfc100u.dll
+ModLoad: 744e0000 7459e000   C:\Windows\SysWOW64\MSVCR100.dll
+ModLoad: 76320000 76420000   C:\Windows\syswow64\USER32.dll
+ModLoad: 75c80000 75d10000   C:\Windows\syswow64\GDI32.dll
+ModLoad: 75c70000 75c7a000   C:\Windows\syswow64\LPK.dll
+ModLoad: 75bd0000 75c6d000   C:\Windows\syswow64\USP10.dll
+ModLoad: 75fe0000 7608c000   C:\Windows\syswow64\msvcrt.dll
+ModLoad: 75d10000 75db0000   C:\Windows\syswow64\ADVAPI32.dll
+ModLoad: 76300000 76319000   C:\Windows\SysWOW64\sechost.dll
+ModLoad: 76130000 76220000   C:\Windows\syswow64\RPCRT4.dll
+ModLoad: 74da0000 74e00000   C:\Windows\syswow64\SspiCli.dll
+ModLoad: 74d90000 74d9c000   C:\Windows\syswow64\CRYPTBASE.dll
+ModLoad: 74f20000 74f77000   C:\Windows\syswow64\SHLWAPI.dll
+ModLoad: 715e0000 7177e000   C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7600.16385_none_421189da2b7fabfc\COMCTL32.dll
+ModLoad: 71e60000 71e65000   C:\Windows\SysWOW64\MSIMG32.dll
+(2360.2030): Break instruction exception - code 80000003 (first chance)
+eax=00000000 ebx=00000000 ecx=3f900000 edx=0021de88 esi=fffffffe edi=77253ade
+eip=772d0995 esp=0040fa30 ebp=0040fa5c iopl=0         nv up ei pl zr na pe nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000246
+ntdll!LdrpDoDebuggerBreak+0x2c:
+772d0995 cc              int     3
+0:000> !htrace -enable
+Handle tracing enabled.
+Handle tracing information snapshot successfully taken.
+0:000> g
+ModLoad: 76220000 76280000   C:\Windows\SysWOW64\IMM32.DLL
+ModLoad: 76c50000 76d1c000   C:\Windows\syswow64\MSCTF.dll
+ModLoad: 71de0000 71e60000   C:\Windows\SysWOW64\UxTheme.dll
+ModLoad: 71dc0000 71dd3000   C:\Windows\SysWOW64\dwmapi.dll
+ModLoad: 53ec0000 53ecd000   C:\Windows\SysWOW64\MFC100ENU.DLL
+ModLoad: 74f80000 75bc9000   C:\Windows\syswow64\SHELL32.dll
+ModLoad: 76800000 7695c000   C:\Windows\syswow64\ole32.dll
+ModLoad: 03690000 037ec000   C:\Windows\SysWOW64\ole32.dll
+ModLoad: 03690000 037ec000   C:\Windows\SysWOW64\ole32.dll
+ModLoad: 76420000 764a3000   C:\Windows\syswow64\CLBCatQ.DLL
+ModLoad: 75f30000 75fbf000   C:\Windows\syswow64\OLEAUT32.dll
+(2360.228c): Invalid handle - code c0000008 (first chance)
+First chance exceptions are reported before any exception handling.
+This exception may be expected and handled.
+eax=00000000 ebx=00000000 ecx=00000000 edx=00000000 esi=000002c0 edi=00000000
+eip=7724f969 esp=0396fb7c ebp=0396fb8c iopl=0         nv up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!NtSetEvent+0x15:
+7724f969 83c404          add     esp,4
+0:002> kb
+ChildEBP RetAddr  Args to Child              
+0396fb7c 764c014d 000002c0 00000000 0396fba0 ntdll!NtSetEvent+0x15
+0396fb8c 013019fc 000002c0 76513677 00000000 KERNELBASE!SetEvent+0x10
+0396fb94 76513677 00000000 0396fbe0 77269d42 BatteryMeter!CPUSwitcherThread+0x1c [d:\livemesh\sharingbin\cppdebug\exercises\6_handles\sources\batterymeter\batterymeterdlg.cpp @ 137]
+0396fba0 77269d42 00000000 5dde75f8 00000000 kernel32!BaseThreadInitThunk+0xe
+0396fbe0 77269d15 013019e0 00000000 00000000 ntdll!__RtlUserThreadStart+0x70
+0396fbf8 00000000 013019e0 00000000 00000000 ntdll!_RtlUserThreadStart+0x1b
+0:002> !handle 2c0 f
+Could not duplicate handle 2c0, error 6
+0:002> !error 6
+Error code: (Win32) 0x6 (6) - The handle is invalid.
+0:002> !htrace 2dc0
+
+--------------------------------------
+Parsed 0x119 stack traces.
+Dumped 0x0 stack traces.
+0:002> !htrace 2c0
+--------------------------------------
+Handle = 0x000002c0 - *** BAD REFERENCE ***
+Thread ID = 0x00000c1c, Process ID = 0x00000bf4
+
+0x02d51d48: +0x02d51d48
+0x02a80853: +0x02a80853
+0x770a011a: +0x770a011a
+0x7433ab4c: +0x7433ab4c
+0x7432cf87: +0x7432cf87
+0x7440276d: +0x7440276d
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770cc367: +0x770cc367
+0x77082e2e: +0x77082e2e
+0x7724fde6: ntdll!ZwDuplicateObject+0x00000012
+0x764bb7e1: KERNELBASE!DuplicateHandle+0x00000069
+0x765117e2: kernel32!DuplicateHandleImplementation+0x000000b3
+0x53ee9881: +0x53ee9881
+0x53eea100: +0x53eea100
+0x53ee7724: +0x53ee7724
+--------------------------------------
+Handle = 0x000002c0 - *** BAD REFERENCE ***
+Thread ID = 0x0000228c, Process ID = 0x00002360
+
+0x02a80853: +0x02a80853
+0x74402dd9: +0x74402dd9
+0x74402d92: +0x74402d92
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770cc367: +0x770cc367
+0x77082e2e: +0x77082e2e
+0x7724f969: ntdll!NtSetEvent+0x00000015
+0x764c014d: KERNELBASE!SetEvent+0x00000010
+0x013019fc: BatteryMeter!CPUSwitcherThread+0x0000001c
+0x77269d42: ntdll!__RtlUserThreadStart+0x00000070
+0x77269d15: ntdll!_RtlUserThreadStart+0x0000001b
+--------------------------------------
+Handle = 0x000002c0 - CLOSE
+Thread ID = 0x0000228c, Process ID = 0x00002360
+
+0x02d983b4: +0x02d983b4
+0x02a80853: +0x02a80853
+0x7709fe4a: +0x7709fe4a
+0x7432f2cd: +0x7432f2cd
+0x7432cf87: +0x7432cf87
+0x7440276d: +0x7440276d
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770cc367: +0x770cc367
+0x77082e2e: +0x77082e2e
+0x7724f982: ntdll!ZwClose+0x00000012
+0x764bb75d: KERNELBASE!CloseHandle+0x0000002d
+0x765113f8: kernel32!CloseHandleImplementation+0x0000003f
+0x013019be: BatteryMeter!MakeSureHandleIsValid+0x0000002e
+0x013019f0: BatteryMeter!CPUSwitcherThread+0x00000010
+0x77269d42: ntdll!__RtlUserThreadStart+0x00000070
+--------------------------------------
+Handle = 0x000002c0 - OPEN
+Thread ID = 0x00002030, Process ID = 0x00002360
+
+0x02d52168: +0x02d52168
+0x02a80853: +0x02a80853
+0x770a01da: +0x770a01da
+0x7433b055: +0x7433b055
+0x7432cf87: +0x7432cf87
+0x7440276d: +0x7440276d
+0x7432d07e: +0x7432d07e
+0x7432c549: +0x7432c549
+0x770982c8: +0x770982c8
+0x77097423: +0x77097423
+0x77082e2e: +0x77082e2e
+0x7724ff16: ntdll!ZwCreateEvent+0x00000012
+0x764c010c: KERNELBASE!CreateEventExW+0x0000006e
+0x764c053f: KERNELBASE!CreateEventW+0x00000027
+0x01301a30: BatteryMeter!CBatteryMeterDlg::OnCPUSelectorChanged+0x00000020
+0x53622c8c: mfc100u!_AfxDispatchCmdMsg+0x00000058
+
+--------------------------------------
+Parsed 0x119 stack traces.
+Dumped 0x4 stack traces.
+0:002> g
+(2360.228c): Invalid handle - code c0000008 (!!! second chance !!!)
+eax=00000000 ebx=00000000 ecx=00000000 edx=00000000 esi=000002c0 edi=00000000
+eip=7724f969 esp=0396fb7c ebp=0396fb8c iopl=0         nv up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!NtSetEvent+0x15:
+7724f969 83c404          add     esp,4
+0:002> q
+quit:

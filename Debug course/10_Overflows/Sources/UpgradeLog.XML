@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="BuggyApplication">
+</Property><Property Name="Solution File" Value="M:\Debugging Tools\Exercises\10_Overflows\Sources\BuggyApplication.sln">
+</Property><Property Name="User Options File" Value="M:\Debugging Tools\Exercises\10_Overflows\Sources\BuggyApplication.suo">
+</Property><Property Name="Date" Value="יום חמישי 08 ספטמבר 2011">
+</Property><Property Name="Time" Value="15:47">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="BuggyApplication.sln" Description="File successfully backed up as M:\Debugging Tools\Exercises\10_Overflows\Sources\BuggyApplication.sln.old">
+</Event><Event ErrorLevel="0" Project="" Source="BuggyApplication.suo" Description="File successfully backed up as M:\Debugging Tools\Exercises\10_Overflows\Sources\BuggyApplication.suo.old">
+</Event><Event ErrorLevel="0" Project="BuggyApplication" Source="BuggyApplication\BuggyApplication.vcproj" Description="Converting project file 'M:\Debugging Tools\Exercises\10_Overflows\Sources\BuggyApplication\BuggyApplication.vcproj'.">
+</Event><Event ErrorLevel="1" Project="BuggyApplication" Source="BuggyApplication\BuggyApplication.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="BuggyApplication" Source="BuggyApplication\BuggyApplication.vcproj" Description="Done converting to new project file 'M:\Debugging Tools\Exercises\10_Overflows\Sources\BuggyApplication\BuggyApplication.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="BuggyApplication" Source="BuggyApplication\BuggyApplication.vcproj" Description="Converted">
+</Event><Event ErrorLevel="2" Project="" Source="BuggyApplication.sln" Description="Solution file 'M:\Debugging Tools\Exercises\10_Overflows\Sources\BuggyApplication.sln' cannot be converted because it is read-only on disk. To convert the solution, change the permissions on the solution file to allow modification and re-open it.">
+</Event><Event ErrorLevel="3" Project="" Source="BuggyApplication.sln" Description="Not Converted">
+</Event></UpgradeLog>

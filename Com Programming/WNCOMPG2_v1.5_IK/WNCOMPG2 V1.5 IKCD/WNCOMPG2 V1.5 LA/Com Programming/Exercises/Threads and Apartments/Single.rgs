@@ -1,0 +1,25 @@
+HKCR
+{
+	ThreadServer.Single.1 = s 'Single Class'
+	{
+		CLSID = s '{0065C9BF-D594-44C2-A6EB-312590A11315}'
+	}
+	ThreadServer.Single = s 'Single Class'
+	{
+		CLSID = s '{0065C9BF-D594-44C2-A6EB-312590A11315}'
+		CurVer = s 'ThreadServer.Single.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {0065C9BF-D594-44C2-A6EB-312590A11315} = s 'Single Class'
+		{
+			ProgID = s 'ThreadServer.Single.1'
+			VersionIndependentProgID = s 'ThreadServer.Single'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{BFECFA84-19E4-4A09-868F-3221E2F53ED7}'
+		}
+	}
+}

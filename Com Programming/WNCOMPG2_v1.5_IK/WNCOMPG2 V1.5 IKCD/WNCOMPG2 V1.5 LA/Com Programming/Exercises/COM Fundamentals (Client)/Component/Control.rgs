@@ -1,0 +1,24 @@
+HKCR
+{
+	Simple.Control.1 = s 'Control Class'
+	{
+		CLSID = s '{DBC88FD2-4033-11D2-8172-006097FAD0B8}'
+	}
+	Simple.Control = s 'Control Class'
+	{
+		CurVer = s 'Simple.Control.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {DBC88FD2-4033-11D2-8172-006097FAD0B8} = s 'Control Class'
+		{
+			ProgID = s 'Simple.Control.1'
+			VersionIndependentProgID = s 'Simple.Control'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

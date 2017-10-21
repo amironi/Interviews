@@ -1,0 +1,29 @@
+1. Open the Dump.dmp crash dump in WinDbg and attempt to diagnose the cause of the crash. Make sure to inspect all the threads.
+
+2. Read about the dps command in the documentation.
+
+3. Pass the value of the ESP register to the dps command. (Why?)
+(NOTE: The dds command accepts a range of memory addresses, so if it doesn't display enough data, use a range, e.g.: "dds 00001234 00001234+200".)
+
+4. To perform a manual stack walk, you need to locate a valid EBP value (note that the EBP in the dump is corrupted with 0, and so is EIP). EBP values are typically stored immediately before the return address. Locate a return address on the stack and try to use the memory location preceding it as an EBP anchor. For example:
+
+0:000> dds 002af1a8 
+002af1a8  00000000
+002af1ac  002af120
+002af1b0  00000000
+002af1b4  014cfe90
+002af1b8  002af0fc
+002af1bc  742fd594 uxtheme!StreamInit+0x36
+002af1c0  002af180
+002af1c4  01850815
+002af1c8  0000029e
+
+Suppose you think that uxtheme!StreamInit+0x36 is a return address on the stack. Then the value 002af0fc might be a saved EBP. Use that value to trace back through the stack to the previous EBP, and hence previous return address. NOTE: not everything that looks like a symbol on the stack is actually a return address.
+
+5. To streamline the analysis, you can use the kb=... command. You need to give it a guessed EBP, ESP, EIP triple, for example:
+
+kb = 002af0fc 002af0fc 742fd594
+
+You already know how to look for a saved EBP. The ESP associated with that EBP is hard to tell, but you can pass the same value. The EIP associated with that EBP is the return address immediately following the saved EBP.
+
+6. What is the likely culprit of the problem? After detecting the function name, look at the source code.

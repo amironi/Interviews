@@ -1,0 +1,26 @@
+HKCR
+{
+	Server.Automation.1 = s 'Automation Class'
+	{
+		CLSID = s '{45D4EE92-6A6D-11D3-9DDF-006097FAD0B8}'
+	}
+	Server.Automation = s 'Automation Class'
+	{
+		CLSID = s '{45D4EE92-6A6D-11D3-9DDF-006097FAD0B8}'
+		CurVer = s 'Server.Automation.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {45D4EE92-6A6D-11D3-9DDF-006097FAD0B8} = s 'Automation Class'
+		{
+			ProgID = s 'Server.Automation.1'
+			VersionIndependentProgID = s 'Server.Automation'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{45D4EE85-6A6D-11D3-9DDF-006097FAD0B8}'
+		}
+	}
+}
