@@ -12,36 +12,38 @@ int main ()
 
     int a, b;
     while (infile >> a >> b) {
-        rangesMap[a] = b;
+        rangesMap[a] = max(b,rangesMap[a]);
     }
 
-    map<int,int> new_map;
 
-    map<int,int>::iterator itr = rangesMap.begin();
-    new_map[itr->first] = itr->second ;
     
-    map<int,int>::iterator itr2 = new_map.find( itr->first );
-    itr++;
-
-    for( ; itr != rangesMap.end() ; itr++ ) {
-        if (itr2->second <= itr->first )
-            itr2->second = itr->second;
-        else {
-            new_map[itr->first] = itr->second ;
-            itr2 = new_map.find( itr->first );
-          }
-    }
+    auto itr1 = rangesMap.begin();
+    auto itr2 = ++rangesMap.begin();
 
     int count = 4294967295;
+    
+    if (itr1->first == '0' )
+       int min = int_max ;
+  
+    while(itr2 != rangesMap.end() ) {
+   
+        if (itr2->first - itr1->second > 0  )
 
-    for( auto i: new_map )
-        count -= i.second - i.first;
+            if (itr1->first == '0' )
+                min = itr1->second + 1;
 
+             count -= itr2->first - itr1->second - 1;
+        }
+
+        itr1++;
+        itr2++;
+    }
+
+
+    
     cout << "Count of  allowed Integers: " << count << endl;
 
-    int min = 0 ;
-    if (new_map.begin()->first == '0' )
-        min = new_map.begin()->second + 1;
+    
 
     cout << "Min allowed Integers: " << min;
 
