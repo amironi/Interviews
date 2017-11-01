@@ -28,6 +28,8 @@
 
 using namespace std;
 
+
+
 template<bool... args>
 int reversed_binary_value() {
 	const int size = sizeof...(args);
@@ -39,9 +41,22 @@ int reversed_binary_value() {
 	return res;
 }
 
+
+template<bool T1>
+int reversed_binary_value2() {
+	return T1;
+}
+
+template<bool T1, bool T2, bool... args>
+int reversed_binary_value2() {
+	return T1 + 2 * reversed_binary_value<T2, args...>();
+}
+
+
 int main()
 {
-	cout << reversed_binary_value<0,0,1>();
+	cout << reversed_binary_value<0, 0, 0 ,1>();
+	cout << reversed_binary_value2<0, 0, 0, 1>();
 
 	return 0;
 }
