@@ -15,13 +15,38 @@ Write your code in this editor and press "Run" button to compile and execute it.
 
 using namespace std;
 
+
+class SpinLock
+{
+  lock(){
+
+    while(1)
+    {
+      if ( l == 0){
+
+         l = tid;
+         
+         if( l == tid)
+         {
+          return;
+         }
+      }
+  }
+
+  unlock(){
+    l = 0;
+  }
+
+  bool l = 0;
+}
+
 class ReadWriteLock
 {
 
 public:
 
 
-  void lock_read()
+  void read()
   {
      r.lock();
 
@@ -38,21 +63,14 @@ public:
      r.unlock();
   }
 
-  void lock_write()
+  void write()
   {
-     r.lock();
-     w.lock();
+    w.lock();
 
      //do write
 
      w.unlock();
-     r.unlock();
   }
-
-
-
-
-
 
   mutex r;
   mutex w;
@@ -139,3 +157,56 @@ void write_fun()
 
 
 
+
+
+void ReadWriteLock3::Write(int i)
+{
+  while (1)
+  {
+    if (w == 0)
+    {
+      w = mCPUId;
+
+      if (w == mCPUId)
+      {
+        mData = i;
+
+        w = 0;
+        return;
+      }
+    }
+  } 
+}
+
+
+int ReadWriteLock3::Read()
+{
+  
+  r++;
+
+  while (w) {}
+
+  //read;
+
+  r--;
+
+}
+
+void ReadWriteLock3::Write()
+{
+  while (1)
+  {
+    if (w == 0 && r == 0)
+    {
+      w = 1;
+
+      if (w == 1 && r == 0)
+      {
+        //write
+
+        w = 0;
+        return;
+      }
+    }
+  } 
+}
