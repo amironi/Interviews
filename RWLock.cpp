@@ -111,7 +111,7 @@ public:
   //Apple2
   read(){
 
-    while(w);
+    while(r == -1);
 
     ++r;
 
@@ -122,12 +122,12 @@ public:
 
   write()
   {
-      while(r || w); 
-      w = 1;
+      while(!r); 
+      r = -1;
  
       // do write
 
-      w  = 0;
+      r  = 0;
   }
 
 
@@ -159,37 +159,15 @@ void write_fun()
 
 
 
-void ReadWriteLock3::Write(int i)
-{
-  while (1)
-  {
-    if (w == 0)
-    {
-      w = mCPUId;
-
-      if (w == mCPUId)
-      {
-        mData = i;
-
-        w = 0;
-        return;
-      }
-    }
-  } 
-}
-
 
 int ReadWriteLock3::Read()
 {
-  
-  r++;
-
-  while (w) {}
+   while (w) {}
+   r++;
 
   //read;
 
   r--;
-
 }
 
 void ReadWriteLock3::Write()

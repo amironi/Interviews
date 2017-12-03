@@ -33,8 +33,8 @@ person maybeFamous(person i, person j) {
   return know(i,j) ? j : i; 
 }
 
-person findFamous(List<person> people){
-
+person findFamous(List<person> people)
+{
     person famous = people.front();
     
     for(auto& i : people)
