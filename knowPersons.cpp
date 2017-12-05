@@ -35,6 +35,10 @@ person maybeFamous(person i, person j) {
 
 person findFamous(List<person> people)
 {
+
+	if(people.size() == 0) 
+		return person();
+
     person famous = people.front();
     
     for(auto& i : people)
