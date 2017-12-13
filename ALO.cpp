@@ -69,6 +69,26 @@ int recursive_solution( const int N,  const string& aList = "" )
 
 
 
+//Given 3 characters a, b, c. Find the number of strings of length n that can be formed from these 3 characters. Given that : we can use ‘a’ as many times as we want, ‘b’ maximum once, and ‘c’ maximum twice.
+
+int abc( int N, int b=0, int c=0 )
+{
+
+    if( b == 3 || c == 2)
+    { 
+      return 0;
+    }
+
+    if( N == 0 )
+    {
+        return 1;
+    }
+
+    return abc( N-1, b, c ) +   //state a
+    abc( N-1, b+1, c ) +  //state b
+    abc( N-1, b, c+1 );// state c
+}
+
 int Amir( int N, int A=0, int L=0 )
 {
     if( L == 3 || A == 2)
