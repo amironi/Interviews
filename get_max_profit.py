@@ -11,10 +11,29 @@ def get_max_profit(stock_prices_yesterday):
         if index == 0:
             continue
 
-        potential_profit = current_price - min_price
+        potential_profit = 
 
-        max_profit = max(max_profit, potential_profit)
+        max_profit = max(max_profit, current_price - min_price)
 
         min_price  = min(min_price, current_price)
 
     return max_profit
+
+
+int max_profit(const vector<int>& stock)
+{
+  int min_stock = stock[0]; 
+
+  int max_profit = stock[1];
+  
+  for( int i = 2; i < stock.size(); i++ )
+  {
+    max_profit = max(max_profit, stock[i] - min_stock);
+
+    min_stock = min(min_stock, stock[i]);
+  }
+  
+  return max_profit;
+
+}
+

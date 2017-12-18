@@ -49,3 +49,21 @@ void stockBuySell(int price[], int n)
  
     return;
 }
+
+
+int max_profit(const vector<int>& stock)
+{
+  int min_stock = stock[0]; 
+
+  int max_profit = stock[1];
+  
+  for( int i = 2; i < stock.size(); i++ )
+  {
+    max_profit = max(max_profit, stock[i] - min_stock);
+
+    min_stock = min(min_stock, stock[i]);
+  }
+  
+  return max_profit;
+
+}
