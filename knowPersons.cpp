@@ -1,34 +1,5 @@
 
 
-person findFamous(Array<person> people)
-{
-  int currect = 0;
-  int next = 1;
-
-  while (currect <= N-1) 
-  {
-    while(next < N-1)
-    {
-      if( know(people[(current + next) % N], people[current]) )
-      {
-        next++;      
-      }
-      else
-      {
-        currect += next;
-
-        break;
-      }
-    }
-  }
-
-   for(int i = 0; i<n -1; i++)
-     if( know(people[current], people[(current+i)%N]))
-       return person();
-
-  return people[current];
-}
-
 person maybeFamous(person i, person j) { 
   return know(i,j) ? j : i; 
 }
@@ -54,38 +25,6 @@ person findFamous(List<person> people)
     return famous;
 }
 
-person findFamous(List<person> people, person f){
-
-  if(people.size() == 0)
-    return f;
-    
-    person p1 = people.front();
-    people.pop_first();
-    
-    if( know(p1, f)) 
-      return findFamous(people,f);
-     
-    return findFamous(people,p1);
-}
-
-person findFamous(List<person> people){
-    person p1 = people.front();
-    
-    people.pop_first();
-    
-    person candidate = findFamous(people,p1);
-    
-    int c = 0;
-    
-    for(auto i : people)
-      if( know(i, candidate)) 
-        c++;
-      else
-        return person();
-        
-    return c == people.size() ? candidate : person();
-}
-   
 
 [p0, p1, p2, ...., pN]
 
