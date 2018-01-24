@@ -18,3 +18,25 @@ public class Queue<E>
     }
 
 }
+
+struct Node
+ {
+    Node* next;
+    Node* data;     
+ }; 
+
+
+Node* c(Node* n)
+{
+    Node* r = new Node;
+
+    while(n->next)
+    {
+        r->next = new Node;
+        
+        n = n->next;
+        r = r->next;
+    }
+
+    return r;
+}

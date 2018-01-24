@@ -50,7 +50,7 @@ int main()
 
     
     cout<<s<<endl;
-    cc( s );
+    f( s );
     cout<<s<<endl;
     
     return 0;

@@ -9,13 +9,24 @@ using namespace std;
 int *p;
 int *f;
 
-int Mem[N];// = new int(N);
+char Mem[2*1024];// = new int(N);
 
-void
-init()
+void init()
 {
     p = Mem;
     f = NULL;
+    
+}
+
+struct Node
+{   
+    short _size = 2*1024;
+    char* data=mem;
+    Node* _next;
+};
+
+char* malloc(int size)
+{
     
 }
 

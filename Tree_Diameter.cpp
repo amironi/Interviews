@@ -104,16 +104,15 @@ main()
 
 int countSubtreesWithSumX(Node* root, int x, int count = 0)
 {
-    // if tree is empty
     if (!root) return 0;
- 
-    // if tree's nodes sum == x
-    if (sum = (countSubtreesWithSumX(root->left, count, x) + 
+
+    sum = 
+      (countSubtreesWithSumX(root->left, count, x) + 
       countSubtreesWithSumX(root->right, count, x) + 
-      root->data) == x)
-        count++;
+      root->data);
+
+    if ( sum == x) count++;
  
-    // required count of subtrees
     return sum;
 }
 

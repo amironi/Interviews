@@ -108,6 +108,18 @@ int Amir( int N, int A=0, int L=0 )
 }
 
 
+int LIS( int* a, int n, int x = 0)
+{
+    if( n == 0 ) return 0;
+    
+    
+    if( *a <= x )  return LIS(a+1,n-1,x);
+
+    return max(
+      1 + LIS(a+1,n-1,*a),
+      LIS(a+1,n-1,x) );
+}
+
 int main()
 {
     int n = 8;
