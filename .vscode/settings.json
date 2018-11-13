@@ -3,6 +3,13 @@
         "algorithm": "cpp",
         "chrono": "cpp",
         "limits": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "xstring": "cpp",
+        "system_error": "cpp",
+        "xlocale": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "xmemory0": "cpp"
     }
 }
