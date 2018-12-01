@@ -21,6 +21,19 @@ void PermutationsNormal(string str, string x = "") /// N!
         PermutationsNormal(str.substr(0,i) + str.substr(i+1), x + str[i]);
 }
 
+void PermutationsNormal2(char* str, int n, int index) /// N!
+{
+    if( index == n ){
+        cout << str << endl;
+        return;
+    }
+    for(int i = index; i < n; i++ ){
+        swap(str[i], str[index]);
+        PermutationsNormal2(str, n ,index + 1);
+        swap(str[i], str[index]);
+    }
+}
+
 void PermutationsAll(string str, string x = "")// N^N
 {
     if( str.size() == x.size() ){
