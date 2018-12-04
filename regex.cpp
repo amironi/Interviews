@@ -24,12 +24,8 @@ bool Check(string s, string regex)
 
     if ( regex[0] == '*')
         {
-            bool r= 0;
-            for(int i=0; i<s.length(); i++)
-            {
-                r |= Check(s.substr(i), regex.substr(1));
-            }
-            return r;
+            return Check(s.substr(1), regex.substr(1)) ||  
+                Check(s.substr(1), regex);  
         }
         
     return false;
