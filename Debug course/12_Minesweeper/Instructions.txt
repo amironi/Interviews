@@ -1,8 +1,0 @@
-
-Use IDA and Ollydbg to complete this exercise.
-
-1. Patch Minesweeper such that it doesn't play any sounds, ever.
-
-2. Patch Minesweeper such that the recorded score is always 1 second, regardless of level or actual result.
-
-3. Patch Minesweeper such that all mines are always revealed. (This might require deep analysis of how board cells are represented. See http://www.codeproject.com/KB/trace/minememoryreader.aspx for interesting details.)

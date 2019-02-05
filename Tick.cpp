@@ -22,3 +22,26 @@ void Run() {
         AddTick(front);
     }
 }
+
+/////
+
+map<int, list<task>> map_;
+
+void AddTask(interval, task) { 
+    map_[interval + time()].push(pair<interval, task>)
+
+    if (intrerval < min ) {
+        cancelTimer();
+        AddTimer(intrerval, cb);
+        min = interval;
+    }
+}
+
+void cb() {
+    
+    while(itr != end) {
+        itr = map+.earse(itr)
+    }
+
+    AddTimer(map_.first, cb);
+}

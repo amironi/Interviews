@@ -1,8 +1,0 @@
-
-1. Run the NumberCruncher.exe application from the Binaries folder. The application crashes.
-
-2. Capture a crash dump of the application using the tools shown in class. You may use whatever tool you like.
-
-3. Open the dump file in Visual Studio 2010 using File-->Open File. Click the "Debug with Native" green "play" button. If asked for source file locations, point the debugger to the Sources\NumberCruncher folder.
-
-4. Inspect the current line, the call stack, the threads window (try switching between threads to see what they are doing), and the locals window and try to diagnose the root cause of the crash.

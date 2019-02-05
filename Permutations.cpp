@@ -44,15 +44,29 @@ void PermutationsAll(string str, string x = "")// N^N
     for(int i = 0; i < str.size(); i++ )
         PermutationsAll(str, x + str[i]);
 }
-
-void PermutationsAbove(string str, string x = "")
-{
+// Power set
+void PermutationsAbove(string str, string x = "") {
     cout << x << endl;
     
     if( str.size() == 0 ) return;
     
     for(int i = 0; i < str.size(); i++ )
         PermutationsAbove(str.substr(i+1), x + str[i]);
+}
+
+void PermutationsAbove(char* str, int n, int index) 
+{
+    cout << str.substr(0,index) << endl;
+    
+    if( index == n ){
+        return;
+    }
+
+    for(int i = index; i < n; i++ ){
+        swap(str[i], str[index]);
+        PermutationsAbove(str, n ,index + 1);
+        swap(str[i], str[index]);
+    }
 }
 
 

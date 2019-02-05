@@ -12,11 +12,15 @@ typedef pair<int,int> Point;
 //comp: O(n*lg(n))
 vector<Point> FindMaxPeekIntervals( vector<Point>& intervals ) {
     map<int, int > sorted_points;
+    map<int, list<func> > rooms;
 
     // Fill the helper sorted_points
     for(auto i : intervals) {
         sorted_points[i.first]++;
         sorted_points[i.second]--;
+
+        rooms[i.first].push_back( malloc() );
+        rooms[i.second].push_back( free() );
     }
 
     //Find Max peek
@@ -25,6 +29,11 @@ vector<Point> FindMaxPeekIntervals( vector<Point>& intervals ) {
     for(auto i : sorted_points) {
         counter += i.second;
         max_peek = max(max_peek, counter);
+    }
+
+    //Assign
+    for(auto i : rooms) {
+        runAll(i.second);
     }
 
     //Fill Max vector ranges
@@ -45,6 +54,7 @@ vector<Point> FindMaxPeekIntervals( vector<Point>& intervals ) {
 
     return ret;
 }
+
 
 
 set<Point> findMaxGuests(set<Point>& intervals)  {

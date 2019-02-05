@@ -25,6 +25,20 @@ bool isSumExist(int* arr, int n, int sum)
            isSumExist(arr +1,  n-1, sum );
 }
 
+int maxSum(int* arr, int n)
+{
+    int sum = 0;
+    int maxsum = 0;
+    for(int i = 0 i < n; i++) {
+        sum += arr[i];
+        maxsum = max(maxsum, sum);
+        if( sum < 0) {
+            sum = 0;
+        }
+    }
+}
+
+
 int main(int argc, char * argv[])
 {
     srand(time(NULL));
